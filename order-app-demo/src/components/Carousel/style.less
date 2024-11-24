@@ -1,0 +1,43 @@
+.stepper-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+  }
+  
+  .image-container {
+    flex-grow: 1; /* 占满剩余空间 */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* 防止图片溢出 */
+    background-color: #f0f0f0; /* 可选：图片加载前的背景色 */
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 填充父容器，同时保持比例 */
+  }
+  
+  .mobile-stepper {
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 8px 16px;
+    box-sizing: border-box;
+  }
+  
+  .next-button,
+  .back-button {
+    color: #1976d2;
+    font-weight: bold;
+  }
+  
+  .next-button:disabled,
+  .back-button:disabled {
+    color: rgba(0, 0, 0, 0.26);
+  }
+  

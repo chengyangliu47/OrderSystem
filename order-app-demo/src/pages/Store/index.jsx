@@ -1,5 +1,5 @@
 import React from "react";
-import "../../components/Carousel";
+import Carousel from "../../components/Carousel";
 
 const Store = () =>{
     return(
