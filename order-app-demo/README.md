@@ -30,3 +30,11 @@ npm install --save-dev less less0loader
 
 ## 开发样式
 1. 组合组件并设置样式
+
+## 运行指令
+1. 在项目文件夹里运行
+```
+npm start
+
+```
+2. 访问http://localhost:3000/#
