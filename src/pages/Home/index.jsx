@@ -7,6 +7,7 @@ import MenuCatrgory from "../../components/MenuCategory"
 import MenuCart from "../../components/MenuCart"
 import MenuCategory from "../../components/MenuCategory";
 import BottomNav from "../../components/BottomNav"
+import TopSearchBar from "../../components/TopSearchBar";
 
 
 
@@ -19,9 +20,8 @@ import BottomNav from "../../components/BottomNav"
 const Home = () =>{
 
     return(
-      <div>
-        Home
-      </div>
+      
+      <TopSearchBar />
     )
 };
 

@@ -5,6 +5,8 @@ import './style.less'
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -12,8 +14,8 @@ const BottomNav=()=> {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Box sx={{ width: 500 }}>
-      <BottomNav
+    <Box class="nav-footer" sx={{ width: 500 }}>
+      <BottomNavigation
         showLabels
         value={value}
         onChange={(event, newValue) => {
@@ -23,7 +25,7 @@ const BottomNav=()=> {
         <BottomNavigationAction label="HomeIcon" icon={<HomeIcon />} />
         <BottomNavigationAction label="SearchIcon" icon={<SearchIcon />} />
         <BottomNavigationAction label="PersonIcon" icon={<PersonIcon />} />
-      </BottomNav>
+      </BottomNavigation>
     </Box>
   );
 }
