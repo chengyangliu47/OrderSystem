@@ -6,7 +6,7 @@ import MenuSearchBar from "../../components/MenuSeachBar";
 import MenuCatrgory from "../../components/MenuCategory"
 import MenuCart from "../../components/MenuCart"
 import MenuCategory from "../../components/MenuCategory";
-import TopNavGrid from "../../components/TopNavGrid"
+import BottomNav from "../../components/BottomNav"
 
 
 
@@ -14,15 +14,15 @@ import TopNavGrid from "../../components/TopNavGrid"
 
 
 
-//Store Page
+//Home Page
 
-const Store = () =>{
+const Home = () =>{
 
     return(
       <div>
-        Store
+        Home
       </div>
     )
 };
 
-export default Store
+export default Home
