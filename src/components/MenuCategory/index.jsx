@@ -16,7 +16,7 @@ export default function MenuCategory() {
             setValue(newValue);
             }}
         >
-            <BottomNavigationAction label="meat"  />
+            <BottomNavigationAction label="Vegetables"  />
             <BottomNavigationAction label="fruits"  />
         </BottomNavigation>
         </Box>

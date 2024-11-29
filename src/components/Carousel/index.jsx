@@ -4,44 +4,99 @@ import banner2 from "../../assets/banner2.jpeg"
 import banner3 from "../../assets/banner3.jpeg"
 import banner4 from "../../assets/banner4.jpeg"
 import './style.less'
-import './glide.core.css'
-import './glide.theme.css'
 import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
 
 
-const Carousel = () =>{
+//c
 
-    return(
-      <div class="glide">
-        <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-                <li class="glide__slide"><img class="carousel-img" src={banner1}></img></li>
-                <li class="glide__slide"><img class="carousel-img" src={banner2}></img></li>
-                <li class="glide__slide"><img class="carousel-img" src={banner3}></img></li>
-                <li class="glide__slide"><img class="carousel-img" src={banner4}></img></li>
-            </ul>
+import { useTheme } from '@mui/material/styles';
+import MobileStepper from '@mui/material/MobileStepper';
+import Button from '@mui/material/Button';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+
+const images = [
+    {
+      label: 'Image 1',
+      imgPath: banner1,
+    },
+    {
+      label: 'Image 2',
+      imgPath: banner2,
+    },
+    {
+      label: 'Image 3',
+      imgPath: banner3,
+    },
+    {
+      label: 'Image 4',
+      imgPath: banner4,
+    }
+  ];
+
+const Carousel=()=> {
+    const theme = useTheme();
+    const [activeStep, setActiveStep] = React.useState(0);
+    const maxSteps = images.length;
+  
+    const handleNext = () => {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+  
+    const handleBack = () => {
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+  
+    return (
+      <div className="stepper-container">
+        {/* 显示当前图片 */}
+        <div className="image-container">
+          <img
+            src={images[activeStep].imgPath}
+            alt={images[activeStep].label}
+            className="carousel-image"
+          />
         </div>
-
-        <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
-        </div>
-
-        <div class="glide__bullets" data-glide-el="controls[nav]">
-            <button class="glide__bullet" data-glide-dir="=0"></button>
-            <button class="glide__bullet" data-glide-dir="=1"></button>
-            <button class="glide__bullet" data-glide-dir="=2"></button>
-            <button class="glide__bullet" data-glide-dir="=3"></button>
-            
-        </div>
-
-        <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
-
-        <script src="./glide-config.jsx">
-
-        </script>
+        <MobileStepper
+          variant="dots"
+          steps={maxSteps}
+          position="static"
+          activeStep={activeStep}
+          className="mobile-stepper"
+          sx={{ maxWidth: 400, flexGrow: 1 }}
+          nextButton={
+            <Button
+              size="small"
+              onClick={handleNext}
+              disabled={activeStep === maxSteps - 1}
+              className="next-button"
+            >
+              Next
+              {theme.direction === 'rtl' ? (
+                <KeyboardArrowLeft />
+              ) : (
+                <KeyboardArrowRight />
+              )}
+            </Button>
+          }
+          backButton={
+            <Button
+              size="small"
+              onClick={handleBack}
+              disabled={activeStep === 0}
+              className="back-button"
+            >
+              {theme.direction === 'rtl' ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
+              Back
+            </Button>
+          }
+        />
       </div>
-    )
-}
+    );
+  }
 
-export default Carousel
+  export default Carousel
