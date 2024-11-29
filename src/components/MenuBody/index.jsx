@@ -8,7 +8,8 @@ const MenuBody = () => {
     return(
         <div className="menu-container">
             <div >Full Menu</div>
-            <MenuSearchBar/>
+            <MenuSearchBar className="menu-search"/>
+            <MenuCategory className="menu-category"/>
         </div>
     )
 }

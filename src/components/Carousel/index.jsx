@@ -10,6 +10,7 @@ import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.
 
 
 const Carousel = () =>{
+
     return(
       <div class="glide">
         <div class="glide__track" data-glide-el="track">
@@ -34,7 +35,7 @@ const Carousel = () =>{
             
         </div>
 
-        <script src="node_modules/@glidejs/glide/dist/glide.min.js">console.log.('hi')</script>
+        <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
 
         <script src="./glide-config.jsx">
 
