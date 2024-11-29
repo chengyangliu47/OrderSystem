@@ -7,7 +7,7 @@ import "./style.less"
 
 export default function MenuSearchBar() {
   return (
-    <div className="header">
+    <div className="menu-search-header">
         <Paper
         component="form"
         sx={{ p: '2px 4px', display: 'flex', alignItems: 'left', width: 400 }}
