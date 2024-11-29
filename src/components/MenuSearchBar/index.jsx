@@ -1,9 +1,9 @@
 import React from "react";
-import './style.less'
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import "./style.less"
 
 export default function MenuSearchBar() {
   return (

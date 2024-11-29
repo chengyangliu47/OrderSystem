@@ -9,13 +9,13 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export default function TopSearchBar() {
   return (
-    <div class="header">
+    <div class="menu-search-top-header">
         
-        <IconButton className="header-left" type="button" sx={{ p: '10px',fontSize:20 }} >
+        <IconButton className="top-header-left" type="button" sx={{ p: '10px',fontSize:20 }} >
             <LocationOnIcon />Miami
         </IconButton>
         <Paper
-        className="header-mid"
+        className="top-header-mid"
         component="form"
         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
         >    
@@ -28,7 +28,7 @@ export default function TopSearchBar() {
             inputProps={{ 'aria-label': 'Search Restaurant' }}
         />
         </Paper>
-        <IconButton className="header-right" type="button" sx={{ p: '10px' }} >
+        <IconButton className="top-header-right" type="button" sx={{ p: '10px' }} >
             <ShoppingCartIcon />
         </IconButton>
     </div>
