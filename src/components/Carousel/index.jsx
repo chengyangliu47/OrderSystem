@@ -47,9 +47,9 @@ const Carousel=()=> {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
   
+
     return (
       <div className="stepper-container">
-        {/* 显示当前图片 */}
         <div className="image-container">
           <img
             src={images[activeStep].imgPath}

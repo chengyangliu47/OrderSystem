@@ -11,7 +11,7 @@ export default function TopSearchBar() {
   return (
     <div class="menu-search-header">
         
-        <IconButton className="top-header-left" type="button" sx={{ p: '10px',fontSize:20 }} >
+        <IconButton className="top-header-left" type="button" sx={{ p: '10px',fontSize:20, }} >
             <LocationOnIcon />Miami
         </IconButton>
         <Paper

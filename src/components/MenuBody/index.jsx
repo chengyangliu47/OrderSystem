@@ -1,15 +1,14 @@
 import React from "react";
-import MenuSearchBar from "../MenuSearchBar"
 import MenuCategory from "../MenuCategory"
 import './style.less'
 
 
-const MenuBody = () => {
+const MenuBody = ({categories, addToCart}) => {
+    
     return(
         <div className="menu-container">
             <div >Full Menu</div>
-            <MenuSearchBar className="menu-search"/>
-            <MenuCategory className="menu-category"/>
+            <MenuCategory categories={categories} className="menu-category"/>
         </div>
     )
 }
