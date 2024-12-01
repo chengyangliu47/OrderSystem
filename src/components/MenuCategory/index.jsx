@@ -8,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { useRef } from 'react';
+import './style.less'
 
 export default function MenuCategory({categories,addToCart}) {
   const [value, setValue] = React.useState(0);

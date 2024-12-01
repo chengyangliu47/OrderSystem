@@ -52,10 +52,10 @@ const Home = () =>{
 
     return(
       <div>
-        <TopSearchBar addToCart={addToCart} clearCart={clearCart} />
+        <TopSearchBar cartItems={cartItems} totalAmount={totalAmount}/>
         <Carousel/>
         <InfoDispay/>
-        <MenuBody categories={categories} addToCart={addToCart}/>
+        <MenuBody categories={categories} addToCart={addToCart} clearCart={clearCart} cartItems={cartItems} totalAmount={totalAmount}/>
         <div className="blank-space"></div>
       </div>
     )
