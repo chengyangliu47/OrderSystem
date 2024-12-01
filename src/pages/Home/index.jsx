@@ -52,7 +52,7 @@ const Home = () =>{
 
     return(
       <div>
-        <TopSearchBar cartItems={cartItems} totalAmount={totalAmount}/>
+        <TopSearchBar cartItems={cartItems} totalAmount={totalAmount} clearCart={clearCart}/>
         <Carousel/>
         <InfoDispay/>
         <MenuBody categories={categories} addToCart={addToCart} clearCart={clearCart} cartItems={cartItems} totalAmount={totalAmount}/>

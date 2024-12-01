@@ -10,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useRef } from 'react';
 import './style.less'
 
-export default function MenuCategory({categories,addToCart}) {
+export default function MenuCategory({categories, addToCart, clearCart, cartItems, totalAmount}) {
   const [value, setValue] = React.useState(0);
 
   const [inputText, setInputText] = useState("");
@@ -116,6 +116,7 @@ export default function MenuCategory({categories,addToCart}) {
                       onClick={(e) => {
                         e.stopPropagation(); // 防止触发卡片点击事件
                         addToCart(product);
+                        console.log(cartItems)
                       }}
                       className="add-to-cart-button"
                     >

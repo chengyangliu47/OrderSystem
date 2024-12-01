@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './style.less'
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -16,20 +16,24 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import TextField from '@mui/material/TextField';
 
 
-export default function TopSearchBar({cartItems},{totalAmount}) {
+export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
 
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const subTotal = 0;
-  const total = 0;
-  const tax = 0;
-  const tip = 0;
+  //const [subTotal, setSubTotal] = useState(totalAmount);
+  const [tax, setTax] = useState(totalAmount*0.13);
+  const [tip, setTip] = useState(0);
+  const total= (totalAmount+tax+tip);
 
-  const [activeTipButton,setactiveTipButton] = useState(null);
+  
+  useEffect(()=>{
+    setTax(totalAmount*0.13);
+  },[totalAmount]);
   
 
 
@@ -57,10 +61,12 @@ export default function TopSearchBar({cartItems},{totalAmount}) {
         </Paper>
             <IconButton onClick={handleOpen} className="top-header-right" type="button" sx={{ p: '10px' }} >
                 <ShoppingCartIcon />
+                ${totalAmount?totalAmount:'0.00'}
             </IconButton>
 
             
       <Modal
+        className="cart-modal"
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -92,8 +98,8 @@ export default function TopSearchBar({cartItems},{totalAmount}) {
                 <body>
                     &nbsp; &nbsp; &nbsp;Washington, NY11050, USA
                 </body>
-                <hr/>
               </li>
+              <hr/>
               <li className="check-out-phone">
                 <body>
                   <LocalPhoneIcon/>
@@ -112,43 +118,58 @@ export default function TopSearchBar({cartItems},{totalAmount}) {
                 <table style={{width:"100%"}}>
                   <tr>
                     <th>Subtotal:</th>
-                    <td>0</td>
+                    <td>${totalAmount}</td>
                   </tr>
                   <tr>
                     <th>Delivery Fee:</th>
                     <td>$0.00</td>
                   </tr>
                   <tr>
-                    <th>Tax:</th>
-                    <td>0</td>
+                    <th >Tax:</th>
+                    <td>${tax}</td>
                   </tr>
                   <tr>
                     <th>Tip:</th>
-                    <td>0</td>
+                    <td>${tip}</td>
                   </tr>
                   </table>
                   <hr/>
-                  <table>
+                  <table style={{width:"100%"}}>
                   <tr>
                     <th>Total:</th>
-                    <td>0</td>
+                    <td>${total}</td>
                   </tr>
                 </table>
               </li>
-              <li className="check-out-tip">
+              
+              <hr/>
+              <li className="check-out-tip" >
                 <body>
-                <hr/>
-                  <h3>Tip</h3>
+                  <h2>Tip</h2>
                   <ButtonGroup>
-                    <button>$2.0</button>
-                    <button>$3.0</button>
-                    <button>$4.0</button>
+                    <button onClick={()=> setTip(0)} >No Tip</button>
+                    <button onClick={()=> setTip(2)} >$2.0</button>
+                    <button onClick={()=> setTip(3)}>$3.0</button>
+                    <button onClick={()=> setTip(4)}>$4.0</button>
                     <button>other</button>
                   </ButtonGroup>
                 </body>
               </li>
-              <li className="check-out-notes"></li>
-              <li className="check-out-place-order"></li>
+              
+              <hr/>
+              <li className="check-out-notes">
+                <TextField
+                  id="outlined-helperText"
+                  label="Delivery Notes"
+                  multiline
+                  rows={4}
+                />
+              </li>
+              
+              <hr/>
+              <li  >
+                <Button  className="check-out-place-order" variant="contained">Place Order</Button>
+              </li>
             </ul>
           </Typography>
         </Box>
