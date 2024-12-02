@@ -7,7 +7,8 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { useRef } from 'react';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 import './style.less'
 
 export default function MenuCategory({categories, addToCart, clearCart, cartItems, totalAmount}) {
@@ -40,6 +41,23 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
     }
   };
 
+
+  //dialog
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = (product) => {
+    setSelectedProduct(product);
+    setOpen(true);
+    console.log(open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    console.log(open);
+  };
+
+
+  
   return (
     <div className='menu-category'>
         <div className="menu-search-header">
@@ -102,7 +120,7 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
                 <div
                   key={product.id}
                   className="product-card"
-                  onClick={() => handleProductClick(product)}
+                  onClick={() => handleClickOpen (product)}
                 >
                   <img
                     src={product.image}
@@ -132,36 +150,51 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
       {/* 商品详情弹窗 */}
       {selectedProduct && (
         <div className="modal">
-          <div className="modal-content">
-            <button className="close-button" onClick={handleCloseModal}>
-              ✖
-            </button>
-            <h2>{selectedProduct.name}</h2>
-            <p>Price: ${selectedProduct.price.toFixed(2)}</p>
-            <p>Description: {selectedProduct.description}</p>
-            <div className="product-options">
-              <label>
-                Size:
-                <select>
-                  <option value="small">Small</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
-                </select>
-              </label>
-            </div>
-            <button
-              onClick={() => {
-                addToCart(selectedProduct);
-                handleCloseModal();
-              }}
-              className="add-to-cart-modal-button"
-            >
-              Add to Cart
-            </button>
-            </div>
+          <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+        <h2>{selectedProduct.name}</h2>
+        <p>Price: ${selectedProduct.price.toFixed(2)}</p>
+        <p>Description: {selectedProduct.description}</p>
+        <div className="product-options">
+          <label>
+            Size:
+            <select>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </label>
+        </div>
+        <button
+          onClick={() => {
+            addToCart(selectedProduct);
+          }}
+          className="add-to-cart-modal-button"
+        >
+          Add to Cart
+        </button>
+        </Box>
+      </Modal>
           </div>)}
       </div>
         </div>
     </div>    
   );
 }
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
