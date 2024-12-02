@@ -1,9 +1,9 @@
 order system
 
 ## 技术栈
-React.js
-Material UI
-Create React App
+React.js\
+Material UI\
+Create React App\
 
 
 ## 安装指令
