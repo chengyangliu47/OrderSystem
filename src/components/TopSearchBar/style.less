@@ -2,9 +2,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5px;
-    padding: 5px;
 }
+
+.top-header-left{
+    display: inline-block; // This is what you're missing
+    max-width: 10%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 
 #simple-popup{
   margin: auto;

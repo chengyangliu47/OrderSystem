@@ -22,9 +22,9 @@ const BottomNav=()=> {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="HomeIcon" icon={<HomeIcon />} />
-        <BottomNavigationAction label="SearchIcon" icon={<SearchIcon />} />
-        <BottomNavigationAction label="PersonIcon" icon={<PersonIcon />} />
+        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+        <BottomNavigationAction  label="Search" icon={<SearchIcon />} />
+        <BottomNavigationAction  label="Person" icon={<PersonIcon />} />
       </BottomNavigation>
     </Box>
   );

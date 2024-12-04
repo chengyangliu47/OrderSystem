@@ -7,9 +7,10 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './style.less'
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { Sizes } from '@glidejs/glide/dist/glide.modular.esm';
 
 export default function MenuCategory({categories, addToCart, clearCart, cartItems, totalAmount}) {
   const [value, setValue] = React.useState(0);
@@ -60,7 +61,7 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
   
   return (
     <div className='menu-category'>
-        <div className="menu-search-header">
+        <div className="menu-search-header" alignItems='center'>
           <Paper
             component="form"
             sx={{ p: '2px 4px', display: 'flex', alignItems: 'left', width: 400 }}
@@ -77,45 +78,47 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
                 <SearchIcon />
             </IconButton>
           </Paper>
+
+
+        
+
+
+                {/* 分类选择按钮 */}
+              <Box sx={{ width: 500 }}>
+                <BottomNavigation
+                id="menu-nav"
+                showLabels
+                value={value}
+                onChange={(event, newValue) => {
+                setValue(newValue);
+                }}>
+                  
+            {categories.map((category) => (
+              <BottomNavigationAction
+                key={category.name}
+                className={`category-button ${
+                  activeCategory === category.name ? 'active' : ''
+                }`}
+                label={category.name}
+                onClick={() => handleCategoryChange(category.name)}
+              >
+                {category.name}
+              </BottomNavigationAction>
+              
+            ))}
+              </BottomNavigation>
+              </Box>
+            
         </div> 
-
-
-        <div>
-        <div className="category-product-list">
-
-
-            {/* 分类选择按钮 */}
-          <Box sx={{ width: 500 }}>
-            <BottomNavigation
-            showLabels
-            value={value}
-            onChange={(event, newValue) => {
-            setValue(newValue);
-            }}>
-        {categories.map((category) => (
-          <BottomNavigationAction
-            key={category.name}
-            className={`category-button ${
-              activeCategory === category.name ? 'active' : ''
-            }`}
-            label={category.name}
-            onClick={() => handleCategoryChange(category.name)}
-          >
-            {category.name}
-          </BottomNavigationAction>
-          
-        ))}
-          </BottomNavigation>
-          </Box>
-
-
+        
       {/* 产品展示 */}
+        <div className="category-product-list" >
       {categories
         .filter((category) => category.name === activeCategory)
         .map((category) => (
-          <div key={category.name} className="category-section">
-            <h2 className="category-title">{category.name}</h2>
-            <div className="products">
+          <div key={category.name} className="category-section" >  
+            <h2 className="category-title">{/*类别名称category.name*/}</h2>
+            <div className="products" style={{display:'ruby'}}>
               {category.products.map((product) => (
                 <div
                   key={product.id}
@@ -130,7 +133,7 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
                   <div className="product-details">
                     <h4>{product.name}</h4>
                     <p>${product.price.toFixed(2)}</p>
-                    <button
+                    <IconButton
                       onClick={(e) => {
                         e.stopPropagation(); // 防止触发卡片点击事件
                         addToCart(product);
@@ -138,8 +141,9 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
                       }}
                       className="add-to-cart-button"
                     >
-                      Add to Cart
-                    </button>
+                      
+                      <AddCircleOutlineOutlinedIcon/>
+                    </IconButton>Add to Cart
                   </div>
                 </div>
               ))}
@@ -149,7 +153,7 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
 
       {/* 商品详情弹窗 */}
       {selectedProduct && (
-        <div className="modal">
+        <div className="modal" >
           <Modal
         open={open}
         onClose={handleClose}
@@ -170,20 +174,19 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
             </select>
           </label>
         </div>
-        <button
+        <IconButton
           onClick={() => {
             addToCart(selectedProduct);
           }}
           className="add-to-cart-modal-button"
         >
-          Add to Cart
-        </button>
+           <AddCircleOutlineOutlinedIcon/>
+        </IconButton>Add to Cart
         </Box>
       </Modal>
           </div>)}
       </div>
-        </div>
-    </div>    
+        </div> 
   );
 }
 

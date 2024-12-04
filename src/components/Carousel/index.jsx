@@ -3,6 +3,7 @@ import banner1 from "../../assets/banner1.jpeg"
 import banner2 from "../../assets/banner2.jpeg"
 import banner3 from "../../assets/banner3.jpeg"
 import banner4 from "../../assets/banner4.jpeg"
+import banner5 from "../../assets/banner1.png"
 import './style.less'
 import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
 
@@ -18,19 +19,19 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 const images = [
     {
       label: 'Image 1',
-      imgPath: banner1,
+      imgPath: banner5,
     },
     {
       label: 'Image 2',
-      imgPath: banner2,
+      imgPath: banner5,
     },
     {
       label: 'Image 3',
-      imgPath: banner3,
+      imgPath: banner5,
     },
     {
       label: 'Image 4',
-      imgPath: banner4,
+      imgPath: banner5,
     }
   ];
 
@@ -49,7 +50,7 @@ const Carousel=()=> {
   
 
     return (
-      <div className="stepper-container">
+      <div className="stepper-container" width='20px' >
         <div className="image-container">
           <img
             src={images[activeStep].imgPath}
@@ -63,7 +64,7 @@ const Carousel=()=> {
           position="static"
           activeStep={activeStep}
           className="mobile-stepper"
-          sx={{ maxWidth: 400, flexGrow: 1 }}
+          sx={{ maxWidth: 400, flexGrow: 1, background:'transparent', '&.MuiMobileSteeper-dots':{color:'white'}}}
           nextButton={
             <Button
               size="small"

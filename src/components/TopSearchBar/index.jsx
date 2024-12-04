@@ -42,13 +42,13 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
   return (
     <div class="menu-search-header">
         
-        <IconButton className="top-header-left" type="button" sx={{ p: '10px',fontSize:20, }} >
-            <LocationOnIcon />Miami
+        <IconButton className="top-header-left" type="button" sx={{ p: '10px',fontSize:20,color:'black', mr:'5%',maxWidth:'10%'}} >
+            <LocationOnIcon />3251 S Miami Ave, Miami, FL 33129
         </IconButton>
         <Paper
         className="top-header-mid"
         component="form"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '70%',position:'realitive' }}
         >    
         <IconButton  type="button" sx={{ p: '10px' }} aria-label="search">
             <SearchIcon />
@@ -59,7 +59,7 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
             inputProps={{ 'aria-label': 'Search Restaurant' }}
         />
         </Paper>
-            <IconButton onClick={handleOpen} className="top-header-right" type="button" sx={{ p: '10px' }} >
+            <IconButton onClick={handleOpen} className="top-header-right" type="button" sx={{ p: '10px', color:'black',ml:'5%', minWidth:'10%'}} >
                 <ShoppingCartIcon />
                 ${totalAmount?totalAmount:'0.00'}
             </IconButton>
@@ -168,13 +168,12 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
               
               <hr/>
               <li  >
-                <Button  className="check-out-place-order" variant="contained">Place Order</Button>
+                <Button className="check-out-place-order" variant="contained">Place Order</Button>
               </li>
             </ul>
           </Typography>
         </Box>
-      </Modal>
-            
+      </Modal>   
     </div>
   );
 }

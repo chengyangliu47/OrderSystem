@@ -1,7 +1,6 @@
 import React,{useState} from "react";
 import Carousel from "../../components/Carousel";
 import InfoDispay from "../../components/InfoDisplay"
-import MenuBody from "../../components/MenuBody"
 import MenuCatrgory from "../../components/MenuCategory"
 import MenuCategory from "../../components/MenuCategory";
 import BottomNav from "../../components/BottomNav"
@@ -18,11 +17,27 @@ const categories = [
     products: [
       { id: 1, name: 'Apple', price: 1.99, image: fruit1, description: 'Fresh apple' },
       { id: 2, name: 'Banana', price: 0.99, image: fruit2, description: 'Ripe banana' },
+      { id: 1, name: 'Apple', price: 1.99, image: fruit1, description: 'Fresh apple' },
+      { id: 2, name: 'Banana', price: 0.99, image: fruit2, description: 'Ripe banana' },
+      { id: 1, name: 'Apple', price: 1.99, image: fruit1, description: 'Fresh apple' },
+      { id: 2, name: 'Banana', price: 0.99, image: fruit2, description: 'Ripe banana' },
+      { id: 1, name: 'Apple', price: 1.99, image: fruit1, description: 'Fresh apple' },
+      { id: 2, name: 'Banana', price: 0.99, image: fruit2, description: 'Ripe banana' },
+      { id: 1, name: 'Apple', price: 1.99, image: fruit1, description: 'Fresh apple' },
+      { id: 2, name: 'Banana', price: 0.99, image: fruit2, description: 'Ripe banana' },
     ],
   },
   {
     name: 'Vegetables',
     products: [
+      { id: 3, name: 'Carrot', price: 0.79, image: vege1, description: 'Organic carrot' },
+      { id: 4, name: 'Broccoli', price: 1.29, image: vege2, description: 'Fresh broccoli' },
+      { id: 3, name: 'Carrot', price: 0.79, image: vege1, description: 'Organic carrot' },
+      { id: 4, name: 'Broccoli', price: 1.29, image: vege2, description: 'Fresh broccoli' },
+      { id: 3, name: 'Carrot', price: 0.79, image: vege1, description: 'Organic carrot' },
+      { id: 4, name: 'Broccoli', price: 1.29, image: vege2, description: 'Fresh broccoli' },
+      { id: 3, name: 'Carrot', price: 0.79, image: vege1, description: 'Organic carrot' },
+      { id: 4, name: 'Broccoli', price: 1.29, image: vege2, description: 'Fresh broccoli' },
       { id: 3, name: 'Carrot', price: 0.79, image: vege1, description: 'Organic carrot' },
       { id: 4, name: 'Broccoli', price: 1.29, image: vege2, description: 'Fresh broccoli' },
     ],
@@ -52,11 +67,13 @@ const Home = () =>{
 
     return(
       <div>
-        <TopSearchBar cartItems={cartItems} totalAmount={totalAmount} clearCart={clearCart}/>
-        <Carousel/>
-        <InfoDispay/>
-        <MenuBody categories={categories} addToCart={addToCart} clearCart={clearCart} cartItems={cartItems} totalAmount={totalAmount}/>
+        <TopSearchBar cartItems={cartItems} totalAmount={totalAmount} clearCart={clearCart} />
+        <body className="123">
+          <Carousel />
+          <InfoDispay/>
+          <MenuCatrgory categories={categories} addToCart={addToCart} clearCart={clearCart} cartItems={cartItems} totalAmount={totalAmount}/>
         <div className="blank-space"></div>
+        </body>
       </div>
     )
 };
