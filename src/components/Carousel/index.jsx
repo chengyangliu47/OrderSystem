@@ -50,7 +50,7 @@ const Carousel=()=> {
   
 
     return (
-      <div className="stepper-container" width='20px' >
+      <div className="stepper-container" >
         <div className="image-container">
           <img
             src={images[activeStep].imgPath}

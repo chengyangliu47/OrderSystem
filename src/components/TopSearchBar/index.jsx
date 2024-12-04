@@ -43,20 +43,22 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
     <div class="menu-search-header">
         
         <IconButton className="top-header-left" type="button" sx={{ p: '10px',fontSize:20,color:'black', mr:'5%',maxWidth:'10%'}} >
-            <LocationOnIcon />3251 S Miami Ave, Miami, FL 33129
+            <LocationOnIcon />3251 S Miami Ave
         </IconButton>
         <Paper
+        style={{ backgroundColor: '#f0f0f0' }}
         className="top-header-mid"
         component="form"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '70%',position:'realitive' }}
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '60%',position:'realitive' }}
         >    
-        <IconButton  type="button" sx={{ p: '10px' }} aria-label="search">
+        <IconButton  type="button" sx={{ p: '10px', color:'black' }} aria-label="search">
             <SearchIcon />
         </IconButton>
         <InputBase
-            sx={{ ml: 1, flex: 1 }}
+            sx={{ ml: 1, flex: 1, color:'secondary'}}
             placeholder="Search Restaurant"
             inputProps={{ 'aria-label': 'Search Restaurant' }}
+            variant='filled'
         />
         </Paper>
             <IconButton onClick={handleOpen} className="top-header-right" type="button" sx={{ p: '10px', color:'black',ml:'5%', minWidth:'10%'}} >
