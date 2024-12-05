@@ -61,7 +61,7 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
             variant='filled'
         />
         </Paper>
-            <IconButton onClick={handleOpen} className="top-header-right" type="button" sx={{ p: '10px', color:'black',ml:'5%', minWidth:'10%'}} >
+            <IconButton onClick={handleOpen} className="top-header-right" type="button" sx={{ p: '10px', color:'black',ml:'15%', minWidth:'10%',right:'0'}} >
                 <ShoppingCartIcon />
                 ${totalAmount?totalAmount:'0.00'}
             </IconButton>

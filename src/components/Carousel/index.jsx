@@ -5,7 +5,8 @@ import banner3 from "../../assets/banner3.jpeg"
 import banner4 from "../../assets/banner4.jpeg"
 import banner5 from "../../assets/banner1.png"
 import './style.less'
-import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
+import Avatar from '@mui/material/Avatar';
+import mcAvatar from "../../assets/avatar.jpeg"
 
 
 //c
@@ -57,45 +58,56 @@ const Carousel=()=> {
             alt={images[activeStep].label}
             className="carousel-image"
           />
+          <div style={{marginTop:-30}}>
+            <Avatar className="carousel-avatar" src={mcAvatar}  sx={{ width: 70, height: 70 }}/>
+
+
+            <MobileStepper
+              variant="dots"
+              steps={maxSteps}
+              position="realtive"
+              activeStep={activeStep}
+              className="mobile-stepper"
+              sx={{ maxWidth: 400, flexGrow: 1, background:'transparent', marginTop:'-80px', marginLeft:'30%',
+                          '& .MuiMobileStepper-dotActive': {
+                backgroundColor: 'white', // Active dot color
+              },
+              }}
+              style={{marginLeft:'0',marginRight:'0',maxWidth:'100%'}}
+              nextButton={
+                <Button
+                  size="small"
+                  onClick={handleNext}
+                  disabled={activeStep === maxSteps - 1}
+                  className="next-button"
+                  sx={{marginTop:'-150px', marginRight:'0',color: 'white',}}
+                >
+                  {theme.direction === 'rtl' ? (
+                    <KeyboardArrowLeft />
+                  ) : (
+                    <KeyboardArrowRight />
+                  )}
+                </Button>
+              }
+              backButton={
+                <Button
+                  size="small"
+                  onClick={handleBack}
+                  disabled={activeStep === 0}
+                  className="back-button"
+                  sx={{marginTop:'-150px', marginLeft:'0%',color: 'white',}}
+                >
+                  {theme.direction === 'rtl' ? (
+                    <KeyboardArrowRight />
+                  ) : (
+                    <KeyboardArrowLeft />
+                  )}
+                </Button>
+              }
+            />
+         </div>
         </div>
-        <MobileStepper
-          variant="dots"
-          steps={maxSteps}
-          position="static"
-          activeStep={activeStep}
-          className="mobile-stepper"
-          sx={{ maxWidth: 400, flexGrow: 1, background:'transparent', '&.MuiMobileSteeper-dots':{color:'white'}}}
-          nextButton={
-            <Button
-              size="small"
-              onClick={handleNext}
-              disabled={activeStep === maxSteps - 1}
-              className="next-button"
-            >
-              Next
-              {theme.direction === 'rtl' ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
-            </Button>
-          }
-          backButton={
-            <Button
-              size="small"
-              onClick={handleBack}
-              disabled={activeStep === 0}
-              className="back-button"
-            >
-              {theme.direction === 'rtl' ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
-              Back
-            </Button>
-          }
-        />
+        
       </div>
     );
   }
