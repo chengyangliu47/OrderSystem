@@ -61,10 +61,14 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
   
   return (
     <div className='menu-category'>
-        <div className="menu-search-header" alignItems='center'>
+        <div className="main-search-header" alignItems='spaceBetween' >
+          <div className='store-name' sx={{mr:'50px'}}>
+            <h1>Mcdonald</h1>
+          </div>
           <Paper
             component="form"
             sx={{ p: '2px 4px', display: 'flex', alignItems: 'left', width: 400 }}
+            style={{ backgroundColor: '#f0f0f0' }}
             >
             <InputBase
                 sx={{ ml: 1, flex: 1, left: 0 }}
@@ -74,17 +78,20 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
                 onChange={inputHandler}
 
             />
-            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+            <IconButton type="button" sx={{ p: '10px', color:'black' }} aria-label="search">
                 <SearchIcon />
             </IconButton>
           </Paper>
 
-
+        </div> 
         
-
-
-                {/* 分类选择按钮 */}
-              <Box sx={{ width: 500 }}>
+        <div className='menu-body-panel' style={{marginTop:'20px',}}>
+        <div className='menu-body-left-panel'>
+          <div className='store-info'>Store Address</div>
+          <hr/>
+          <div className='menu-category-selection'>
+            {/* 分类选择按钮 */}
+            <Box sx={{ width: 500, display:'grid' }}>
                 <BottomNavigation
                 id="menu-nav"
                 showLabels
@@ -108,9 +115,10 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
             ))}
               </BottomNavigation>
               </Box>
-            
-        </div> 
-        
+
+              </div>
+              </div>
+              <div className='menu-body-right-panel'>
       {/* 产品展示 */}
         <div className="category-product-list" >
       {categories
@@ -124,26 +132,27 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
                   key={product.id}
                   className="product-card"
                   onClick={() => handleClickOpen (product)}
+                  style={{zoom:'70%'}}
                 >
                   <img
                     src={product.image}
                     alt={product.name}
                     className="product-image"
-                  />
+                  /><IconButton
+                  onClick={(e) => {
+                    e.stopPropagation(); // 防止触发卡片点击事件
+                    addToCart(product);
+                    console.log(cartItems)
+                  }}
+                  className="add-to-cart-button"
+                >
+                  
+                  <AddCircleOutlineOutlinedIcon/>
+                </IconButton>
                   <div className="product-details">
                     <h4>{product.name}</h4>
                     <p>${product.price.toFixed(2)}</p>
-                    <IconButton
-                      onClick={(e) => {
-                        e.stopPropagation(); // 防止触发卡片点击事件
-                        addToCart(product);
-                        console.log(cartItems)
-                      }}
-                      className="add-to-cart-button"
-                    >
-                      
-                      <AddCircleOutlineOutlinedIcon/>
-                    </IconButton>Add to Cart
+                    
                   </div>
                 </div>
               ))}
@@ -187,6 +196,8 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
           </div>)}
       </div>
         </div> 
+        </div>
+        </div>
   );
 }
 
