@@ -27,18 +27,95 @@
 
 .menu-body-panel{
     display: flex;
-    width: 90%;
     margin-left: 5%;
 }
 .menu-body-left-panel{
-    border-right: 2px solid #d3d3d3;
-    width: 20%;
+    width: 30%;
+}
+
+.menu-body-right-panel{
+    border-left: 2px solid #d3d3d3;
+    width: 100%;
 }
 
 .menu-category-selection{
     display: grid;
+    height: 50%;
 }
 
 .css-7ax0nd-MuiBottomNavigation-root{
     display: grid;
 }
+
+#menu-nav{
+    display: grid;
+    justify-content: 'start';
+    align-items: 'flex-start';
+    height: 100%;
+}
+
+
+
+
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Limit to 2 columns */
+    gap: 50px; /* Add space between cards */
+    
+  }
+  
+  .product-card {
+    display: flex;
+    flex-direction: row; /* Align content horizontally */
+    background-color: white; /* White background for the card */
+    border: 2px solid white; /* White border */
+    border-radius: 16px; /* Rounded corners */
+    box-shadow: 0 4px 6px #d3d3d3; /* Subtle shadow */
+    overflow: hidden;
+    padding: 16px; /* Add padding inside the card */
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* Add hover effect */
+    height: fit-content;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.02); /* Slightly enlarge on hover */
+  }
+  
+  .product-image {
+    width: 50%; /* Set image size */
+    height: 50%;
+    object-fit: cover; /* Ensure proper aspect ratio */
+    margin-right: 16px; /* Space between image and text */
+  }
+  
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .product-details h4 {
+    font-size: 16px;
+    margin: 0;
+    color: #333; /* Darker text for the name */
+  }
+  
+  .product-details p {
+    font-size: 14px;
+    margin: 4px 0 0; /* Space above price */
+    color: #555; /* Lighter text for the price */
+  }
+  
+  .add-to-cart-button {
+    margin-left: auto; /* Push button to the far right */
+    color: #007bff; /* Icon color */
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .add-to-cart-button:hover {
+    color: #0056b3; /* Darker blue on hover */
+  }
+  

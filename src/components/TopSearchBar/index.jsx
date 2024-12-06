@@ -63,7 +63,7 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
         </Paper>
             <IconButton onClick={handleOpen} className="top-header-right" type="button" sx={{ p: '10px', color:'black',ml:'15%', minWidth:'10%',right:'0'}} >
                 <ShoppingCartIcon />
-                ${totalAmount?totalAmount:'0.00'}
+                ${totalAmount.toFixed(2)?totalAmount.toFixed(2):'0.00'}
             </IconButton>
 
             
@@ -120,7 +120,7 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
                 <table style={{width:"100%"}}>
                   <tr>
                     <th>Subtotal:</th>
-                    <td>${totalAmount}</td>
+                    <td>${totalAmount.toFixed(2)}</td>
                   </tr>
                   <tr>
                     <th>Delivery Fee:</th>
@@ -128,18 +128,18 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
                   </tr>
                   <tr>
                     <th >Tax:</th>
-                    <td>${tax}</td>
+                    <td>${tax.toFixed(2)}</td>
                   </tr>
                   <tr>
                     <th>Tip:</th>
-                    <td>${tip}</td>
+                    <td>${tip.toFixed(2)}</td>
                   </tr>
                   </table>
                   <hr/>
                   <table style={{width:"100%"}}>
                   <tr>
                     <th>Total:</th>
-                    <td>${total}</td>
+                    <td>${total.toFixed(2)}</td>
                   </tr>
                 </table>
               </li>

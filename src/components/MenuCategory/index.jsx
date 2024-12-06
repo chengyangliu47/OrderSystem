@@ -11,19 +11,27 @@ import Modal from '@mui/material/Modal';
 import './style.less'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { Sizes } from '@glidejs/glide/dist/glide.modular.esm';
+import EditableStoreInfo from '../EditableStoreInfo'
+import AddToWishlist from '../AddToWishlist';
 
 export default function MenuCategory({categories, addToCart, clearCart, cartItems, totalAmount}) {
   const [value, setValue] = React.useState(0);
 
+
   const [inputText, setInputText] = useState("");
 
   const [activeCategory, setActiveCategory] = useState(categories[0]?.name || '');
+
+
+
+
 
   const handleCategoryChange = (categoryName) => {
     setActiveCategory(categoryName);
   };
 
   const [selectedProduct, setSelectedProduct] = useState(null);
+
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -87,11 +95,19 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
         
         <div className='menu-body-panel' style={{marginTop:'20px',}}>
         <div className='menu-body-left-panel'>
-          <div className='store-info'>Store Address</div>
+          <div className='store-info' style={{marginRight:'10px'}}>
+            <EditableStoreInfo></EditableStoreInfo>
+          </div>
           <hr/>
           <div className='menu-category-selection'>
             {/* 分类选择按钮 */}
-            <Box sx={{ width: 500, display:'grid' }}>
+            <Box sx={{
+                      width: '100%',
+                      display: 'flex',
+                      justifyContent: 'start',
+                      alignItems: 'flex-start',
+                      flexDirection: 'column', // Stack items vertically
+                    }}>
                 <BottomNavigation
                 id="menu-nav"
                 showLabels
@@ -126,32 +142,33 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
         .map((category) => (
           <div key={category.name} className="category-section" >  
             <h2 className="category-title">{/*类别名称category.name*/}</h2>
-            <div className="products" style={{display:'ruby'}}>
+            <div className="products" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
               {category.products.map((product) => (
                 <div
                   key={product.id}
                   className="product-card"
                   onClick={() => handleClickOpen (product)}
-                  style={{zoom:'70%'}}
                 >
                   <img
                     src={product.image}
                     alt={product.name}
                     className="product-image"
-                  /><IconButton
-                  onClick={(e) => {
-                    e.stopPropagation(); // 防止触发卡片点击事件
-                    addToCart(product);
-                    console.log(cartItems)
-                  }}
-                  className="add-to-cart-button"
-                >
-                  
-                  <AddCircleOutlineOutlinedIcon/>
-                </IconButton>
+                    style={{zoom:'70%'}}
+                  />
                   <div className="product-details">
                     <h4>{product.name}</h4>
                     <p>${product.price.toFixed(2)}</p>
+                  <IconButton
+                    onClick={(e) => {
+                      e.stopPropagation(); // 防止触发卡片点击事件
+                      addToCart(product);
+                      console.log(cartItems)
+                    }}
+                    className="add-to-cart-button"
+                  >
+                    
+                    <AddCircleOutlineOutlinedIcon/>
+                  </IconButton>
                     
                   </div>
                 </div>
@@ -162,38 +179,85 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
 
       {/* 商品详情弹窗 */}
       {selectedProduct && (
-        <div className="modal" >
-          <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-        <h2>{selectedProduct.name}</h2>
-        <p>Price: ${selectedProduct.price.toFixed(2)}</p>
-        <p>Description: {selectedProduct.description}</p>
-        <div className="product-options">
-          <label>
-            Size:
-            <select>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </label>
-        </div>
-        <IconButton
-          onClick={() => {
-            addToCart(selectedProduct);
-          }}
-          className="add-to-cart-modal-button"
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
-           <AddCircleOutlineOutlinedIcon/>
-        </IconButton>Add to Cart
-        </Box>
-      </Modal>
-          </div>)}
+          <Box sx={style}>
+            <h2>{selectedProduct.name}</h2>
+            <p>Price: ${selectedProduct.price.toFixed(2)}</p>
+            <p>Description: {selectedProduct.description}</p>
+
+            {/* 必选项 */}
+            <div className="product-options">
+              <h3>Required</h3>
+              <label>
+                size:
+                <select required>
+                  <option  value="Small">Small</option>
+                  <option  value="Medium">Medium</option>
+                  <option  value="Large">Large</option>
+                </select>
+              </label>
+              <label>
+                material:
+                <select required>
+                  <option value="cotton">Cotton</option>
+                  <option value="polyester">Polyester</option>
+                  <option value="silk">Silk</option>
+                </select>
+              </label>
+            </div>
+
+            {/* 可选项 */}
+            <div className="product-options">
+              <h3>Optional</h3>
+              <label>
+                Type:
+                <select>
+                  <option value="">none</option>
+                  <option value="embroidery">Embroidery</option>
+                  <option value="print">Print</option>
+                </select>
+              </label>
+              <label>
+              Package:
+                <select>
+                  <option value="">none</option>
+                  <option value="gift-wrap">Gift Wrap</option>
+                  <option value="basic-wrap">Basic Wrap</option>
+                </select>
+              </label>
+            </div>
+
+            {/* 定制项 */}
+            <div className="product-customization">
+              <h3>Note</h3>
+              <label>
+                <input
+                  type="text"
+                  placeholder="note"
+                  maxLength={30}
+                />
+              </label>
+            </div>
+
+            {/* 添加到购物车 */}
+            <IconButton
+              onClick={() => {
+                addToCart(selectedProduct);
+              }}
+              className="add-to-cart-modal-button"
+            >
+              <AddCircleOutlineOutlinedIcon />
+            </IconButton>
+            Add to Cart
+          </Box>
+        </Modal>
+      )}
+
       </div>
         </div> 
         </div>
