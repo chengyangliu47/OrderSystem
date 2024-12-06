@@ -42,7 +42,12 @@ export default function TopSearchBar({cartItems,totalAmount,clearCart}) {
   return (
     <div class="menu-search-header">
         
-        <IconButton className="top-header-left" type="button" sx={{ p: '10px',fontSize:20,color:'black', mr:'5%',maxWidth:'10%'}} >
+        <IconButton onClick={() => {
+          // Opens Google Maps with the address
+          window.open('https://www.google.com/maps?q=3251+S+Miami+Ave', '_blank');
+        }}
+        
+        className="top-header-left" type="button" sx={{ p: '10px',fontSize:20,color:'black', mr:'5%',maxWidth:'10%'}} >
             <LocationOnIcon />3251 S Miami Ave
         </IconButton>
         <Paper

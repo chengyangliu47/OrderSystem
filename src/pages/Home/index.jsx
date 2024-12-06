@@ -9,6 +9,7 @@ import fruit1 from "../../assets/fruit1.jpg"
 import fruit2 from "../../assets/fruit2.jpg"
 import vege1 from "../../assets/vege1.jpg"
 import vege2 from "../../assets/vege2.jpg"
+import FixedCart from "../../components/FixedCart";
 
 const categories = [
   {
@@ -86,6 +87,8 @@ const Home = () =>{
         <body className="main-body">
           <Carousel />
           <MenuCatrgory categories={categories} addToCart={addToCart} clearCart={clearCart} cartItems={cartItems} totalAmount={totalAmount}/>
+          <FixedCart cartItems={cartItems} totalAmount={totalAmount} clearCart={clearCart} />
+
         <div className="blank-space"></div>
         </body>
       </div>

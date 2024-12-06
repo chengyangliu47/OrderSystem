@@ -22,10 +22,20 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
 
   const [activeCategory, setActiveCategory] = useState(categories[0]?.name || '');
 
+  const [searchText, setSearchText] = useState(''); 
 
 
+  const handleSearchChange = (event) => {
+    setSearchText(event.target.value.toLowerCase()); // Added: Update search text state
+  };
 
-
+  // Added: Filter products based on search text and active category
+  const filteredProducts = categories
+    .find((category) => category.name === activeCategory)
+    ?.products.filter((product) =>
+      product.name.toLowerCase().includes(searchText)
+    ) || [];
+    
   const handleCategoryChange = (categoryName) => {
     setActiveCategory(categoryName);
   };
@@ -81,9 +91,9 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
             <InputBase
                 sx={{ ml: 1, flex: 1, left: 0 }}
                 placeholder="Search Items"
+                value={searchText}
+                onChange={handleSearchChange}
                 inputProps={{ 'aria-label': 'Search Items' }}
-                value={inputText}
-                onChange={inputHandler}
 
             />
             <IconButton type="button" sx={{ p: '10px', color:'black' }} aria-label="search">
@@ -136,26 +146,17 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
               </div>
               <div className='menu-body-right-panel'>
       {/* 产品展示 */}
-        <div className="category-product-list" >
-      {categories
-        .filter((category) => category.name === activeCategory)
-        .map((category) => (
-          <div key={category.name} className="category-section" >  
-            <h2 className="category-title">{/*类别名称category.name*/}</h2>
-            <div className="products" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
-              {category.products.map((product) => (
-                <div
-                  key={product.id}
-                  className="product-card"
-                  onClick={() => handleClickOpen (product)}
-                >
+            <div className="category-product-list"  style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+              {filteredProducts.length > 0 ? ( // Modified: Display filtered products
+              filteredProducts.map((product) => (
+                <div key={product.id} className="product-card" >
                   <img
                     src={product.image}
                     alt={product.name}
                     className="product-image"
                     style={{zoom:'70%'}}
                   />
-                  <div className="product-details">
+                    <div className="product-details">
                     <h4>{product.name}</h4>
                     <p>${product.price.toFixed(2)}</p>
                   <IconButton
@@ -169,13 +170,17 @@ export default function MenuCategory({categories, addToCart, clearCart, cartItem
                     
                     <AddCircleOutlineOutlinedIcon/>
                   </IconButton>
-                    
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+    </div>
+  ))
+) : (
+  <p>No products found.</p> // Added: Handle case when no products match the search
+)}
+
+
+
+
+
 
       {/* 商品详情弹窗 */}
       {selectedProduct && (
